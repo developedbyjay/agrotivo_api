@@ -2,8 +2,8 @@
 A rest Api for Agrotivo website
 
 ## USER Routes
-To create new user
- **http://localhost:3000/auth/user/
+**To create new user**
+ -- http://localhost:3000/auth/user/
 To login User
 **http://localhost:3000/auth/user/login
 To Update User
