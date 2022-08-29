@@ -51,7 +51,7 @@ router.put("/:id", auth, async (req, res) => {
 });
 
 // Delete a withdraw
-router.delete(":/id", auth, async (req, res) => {
+router.delete("/:id", auth, async (req, res) => {
   try {
     await Withdraw.findByIdAndDelete(req.params.id);
     res.status(200).json("Withdraw has Been Deleted");
