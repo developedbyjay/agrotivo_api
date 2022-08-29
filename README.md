@@ -62,3 +62,13 @@ A rest Api for Agrotivo website
   http://localhost:3000/withdraw</br>
 
 
+### Vendor Routes
+
+**create vendor**
+  http://localhost:3000/vendor/ </br>
+**update vendor**
+  http://localhost:3000/vendor/(vendor-id) </br>
+**delete vendor**
+  http://localhost:3000/vendor/(vendor-id) </br>
+**get all vendor**
+  http://localhost:3000/vendor/find </br>
