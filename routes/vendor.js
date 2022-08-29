@@ -1,4 +1,4 @@
-const router = require("express").Router();
+Weconst router = require("express").Router();
 const { auth, admin, authVendor } = require("../middleware/validation");
 const Vendor = require("../models/Vendor");
 const cron = require('node-cron')
@@ -45,8 +45,8 @@ router.get("/find", admin, async (req, res) => {
 
       let i = Math.floor(Math.random() * (user.length)) + 1
 
-       cron.schedule('* * * * *',()=>{
-         //res.status(200).json(user[i].whatsapp_number);
+       cron.schedule('* */6 * * *',()=>{
+         res.status(200).json(user[i].whatsapp_number);
          console.log(user[i].whatsapp_number)
        })
         
