@@ -55,7 +55,7 @@ router.put("/:id", auth, async (req, res) => {
 });
 
 // Delete a Order
-router.delete(":/id", auth, async (req, res) => {
+router.delete("/:id", auth, async (req, res) => {
   try {
     await Order.findByIdAndDelete(req.params.id);
     res.status(200).json("Order has Been Deleted");
