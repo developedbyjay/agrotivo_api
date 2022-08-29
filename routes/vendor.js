@@ -38,7 +38,7 @@ router.delete("/:id", admin, async (req, res) => {
   });
 
 
-router.get("/find", admin, async (req, res) => {
+router.get("/find",auth, async (req, res) => {
     
     try {
       const user = await Vendor.find()
