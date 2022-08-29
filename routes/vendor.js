@@ -1,4 +1,4 @@
-Weconst router = require("express").Router();
+const router = require("express").Router();
 const { auth, admin, authVendor } = require("../middleware/validation");
 const Vendor = require("../models/Vendor");
 const cron = require('node-cron')
