@@ -12,7 +12,7 @@ const orderRoute = require('./routes/order')
 const vendorRoutes = require('./routes/vendor')
 const withdrawRoutes = require('./routes/withdraw')
 
-app.use(cors());
+app.use(cors({credentials:true,origin:'*'}));
 app.use(express.json());
 
 
