@@ -49,16 +49,6 @@ const UserSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    age: {
-      type: Number,
-      default: 0,
-      required: true,
-      validate(value) {
-        if (value < 0) {
-          throw new Error("Age must be a positive number");
-        }
-      },
-    },
     referral_balance: {
       type: Number,
       default: 0,
@@ -88,13 +78,19 @@ const UserSchema = new mongoose.Schema(
     },
     image: {
       type: String,
-      required: true,
+      required:true
     },
     // Transcation history
     history: [
         {
         type: Object,
         }
+    ],
+      // Investment History
+    investment_history :[
+      {
+        type: Object
+      }
     ],
   },
   { timestamps: true }
