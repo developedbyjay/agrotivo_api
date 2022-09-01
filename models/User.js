@@ -76,10 +76,10 @@ const UserSchema = new mongoose.Schema(
       type: String,
       default: shortid.generate
     },
-    image: {
-      type: String,
-      required:true
-    },
+//     image: {
+//       type: String,
+//       required:true
+//     },
     // Transcation history
     history: [
         {
