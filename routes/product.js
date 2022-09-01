@@ -106,30 +106,30 @@ router.get("/", async (req, res) => {
 });
 
 // Update the Products gallery ( Future Api)
-router.put(
-  "/gallery/:id",
-  upload_product.array("images", 5),
-  authVendor,
-  async (req, res) => {
-    let imagePath = [];
-    const files = req.file;
-    const basePath = `${req.protocol}://${req.get("host")}/product/uploads/`;
-    files.map((file) => {
-      imageArr.push(`${basePath}${file.filename}`);
-    });
-    try {
-      const updatedProduct = await Product.findByIdAndUpdate(
-        req.params.id,
-        {
-          images: imagePath,
-        },
-        { new: true }
-      );
-      res.status(200).json(updatedProduct);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  }
-);
+// router.put(
+//   "/gallery/:id",
+//   upload_product.array("images", 5),
+//   authVendor,
+//   async (req, res) => {
+//     let imagePath = [];
+//     const files = req.file;
+//     const basePath = `${req.protocol}://${req.get("host")}/product/uploads/`;
+//     files.map((file) => {
+//       imageArr.push(`${basePath}${file.filename}`);
+//     });
+//     try {
+//       const updatedProduct = await Product.findByIdAndUpdate(
+//         req.params.id,
+//         {
+//           images: imagePath,
+//         },
+//         { new: true }
+//       );
+//       res.status(200).json(updatedProduct);
+//     } catch (err) {
+//       res.status(500).json(err);
+//     }
+//   }
+// );
 
 module.exports = router;
