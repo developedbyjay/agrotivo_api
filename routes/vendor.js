@@ -40,12 +40,10 @@ router.delete("/:id", admin, async (req, res) => {
 
 router.get("/find",auth, async (req, res) => {
     
-    try {
+     try {
       const user = await Vendor.find()
 
-       res.status(200).json(user)
-       })
-        
+      res.status(200).json(user)
         
     } catch (err) {
       res.status(500).json(err);
