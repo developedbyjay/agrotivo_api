@@ -1,30 +1,49 @@
 const router = require("express").Router();
 const { auth, admin, authVendor } = require("../middleware/validation");
 const Product = require("../models/Product");
-const { upload_product } = require("../controller/upload");
+// const { upload_product } = require("../controller/upload");
 // Create
 
-router.post(
-  "/",upload_product.single("image"),
-  authVendor,
-  async (req, res) => {
-    const fileName = req.file.filename;
-    const basePath = `${req.protocol}://${req.get("host")}/product/uploads/`;
-    const newProduct = new Product({
-      ...req.body,
-      image: `${basePath}${fileName}`,
-      user: req.user._id,
+// router.post(
+//   "/",upload_product.single("image"),
+//   authVendor,
+//   async (req, res) => {
+//     const fileName = req.file.filename;
+//     const basePath = `${req.protocol}://${req.get("host")}/product/uploads/`;
+//     const newProduct = new Product({
+//       ...req.body,
+//       image: `${basePath}${fileName}`,
+//       user: req.user._id,
+//     });
+//     try {
+//       const savedProduct = await newProduct.save();
+//       await req.user.investment_history.push({'packages':req.body.title,'price':req.body.price})
+//       await req.user.save()
+//       res.status(200).json(savedProduct);
+//     } catch (err) {
+//       res.status(500).json(err.message);
+//     }
+//   }
+// );
+
+router.post("/", authVendor, async (req, res) => {
+  const newProduct = new Product({
+    ...req.body,
+    user: req.user._id,
+  });
+  try {
+    const savedProduct = await newProduct.save();
+    await req.user.investment_history.push({
+      packages: req.body.title,
+      price: req.body.price,
     });
-    try {
-      const savedProduct = await newProduct.save();
-      await req.user.investment_history.push({'packages':req.body.title,'price':req.body.price})
-      await req.user.save()
-      res.status(200).json(savedProduct);
-    } catch (err) {
-      res.status(500).json(err.message);
-    }
+    await req.user.save();
+    res.status(200).json(savedProduct);
+  } catch (err) {
+    res.status(500).json(err.message);
   }
-);
+});
+
 
 // Update a Product
 router.put("/:id", authVendor, async (req, res) => {
