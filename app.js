@@ -8,8 +8,8 @@ const cors = require("cors");
 app.use(cors({credentials:true,origin:'https://agrotivo.netlify.app'}));
 app.use(express.json());
 
-app.use('/product/uploads',express.static(__dirname + '/product/uploads'))
-app.use('/user/uploads',express.static(__dirname + '/user/uploads'))
+// app.use('/product/uploads',express.static(__dirname + '/product/uploads'))
+// app.use('/user/uploads',express.static(__dirname + '/user/uploads'))
 
 
 const userRoute = require('./routes/user')
