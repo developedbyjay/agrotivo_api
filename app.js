@@ -5,16 +5,19 @@ const app = express();
 const port = process.env.PORT || 3000
 const cors = require("cors");
 
+app.use(cors());
+app.use(express.json());
+
+app.use('/product/uploads',express.static(__dirname + '/product/uploads'))
+app.use('/user/uploads',express.static(__dirname + '/user/uploads'))
+
+
 const userRoute = require('./routes/user')
 const authRoute = require('./routes/auth')
 const productRoute = require('./routes/product')
 const orderRoute = require('./routes/order')
 const vendorRoutes = require('./routes/vendor')
 const withdrawRoutes = require('./routes/withdraw')
-
-app.use(cors({credentials:true,origin:'*'}));
-app.use(express.json());
-
 
 app.use('/users', userRoute);
 app.use("/auth/user", authRoute)
