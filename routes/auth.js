@@ -1,4 +1,4 @@
-const { upload_image } = require("../controller/upload");
+// const { upload_image } = require("../controller/upload");
 const router = require("express").Router();
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
@@ -6,14 +6,30 @@ const { auth } = require("../middleware/validation");
 const jwt = require("jsonwebtoken");
 
 // Creation of the user
-router.post("/", upload_image.single("image"), async (req, res) => {
+// router.post("/", upload_image.single("image"), async (req, res) => {
 
-  const fileName = req.file.filename;
-  const basePath = `${req.protocol}://${req.get("host")}/user/uploads/`;
+//   const fileName = req.file.filename;
+//   const basePath = `${req.protocol}://${req.get("host")}/user/uploads/`;
+//   try {
+//     const newUser = new User({
+//       ...req.body,
+//       image: `${basePath}${fileName}`,
+//     });
+//     const user = await newUser.save();
+//     const token = await jwt.sign({ _id: user._id.toString() }, "TOKEN");
+//     user.tokens = user.tokens.concat({ token });
+//     await user.save();
+//     res.status(201).json({ user, token });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
+router.post("/", async (req, res) => {
+
   try {
     const newUser = new User({
       ...req.body,
-      image: `${basePath}${fileName}`,
     });
     const user = await newUser.save();
     const token = await jwt.sign({ _id: user._id.toString() }, "TOKEN");
