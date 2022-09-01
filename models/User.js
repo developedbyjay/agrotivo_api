@@ -13,18 +13,12 @@ const UserSchema = new mongoose.Schema(
       type: String,
       reguired: true,
       minlength: 7,
-      trim: true,
-      validate(value) {
-        if (value.toLowerCase().includes("password")) {
-          throw new Error("Password must be unique");
-        }
-      },
     },
+    
     email: {
       type: String,
       required: true,
       unique: true,
-      trim: true,
       lowercase: true,
       validate(value) {
         if (!validator.isEmail(value)) {
