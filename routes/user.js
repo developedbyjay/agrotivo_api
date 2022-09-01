@@ -7,7 +7,8 @@ const router = require("express").Router();
 //UPDATE
 router.put("/user/:id", auth, async (req, res) => {
    if (req.body.password) {
-    req.body.password = await bcrypt.hash(req.body.password, 8).toString();
+    req.body.password = await bcrypt.hash(req.body.password, 8);
+    await req.user.save()
   }
   try {
     const updatedUser = await User.findByIdAndUpdate(
@@ -17,7 +18,7 @@ router.put("/user/:id", auth, async (req, res) => {
       },
       { new: true }
     );
-    await req.user.save()
+    
     res.status(200).json(updatedUser);
   } catch (err) {
     res.status(500).json(err);
