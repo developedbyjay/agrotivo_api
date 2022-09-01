@@ -25,9 +25,7 @@ const UserSchema = new mongoose.Schema(
       },
     },
     phone_number: {
-      type: Number,
-      unique: true,
-      required: true,
+       type: Number, required: true, unique: true 
     },
     enable: {
       type: Boolean,
