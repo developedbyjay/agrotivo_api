@@ -43,11 +43,7 @@ router.get("/find",auth, async (req, res) => {
     try {
       const user = await Vendor.find()
 
-      let i = Math.floor(Math.random() * (user.length)) + 1
-
-       cron.schedule('* */6 * * *',()=>{
-         res.status(200).json(user[i].whatsapp_number);
-         console.log(user[i].whatsapp_number)
+       res.status(200).json(user)
        })
         
         
