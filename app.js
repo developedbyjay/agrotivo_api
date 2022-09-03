@@ -26,6 +26,8 @@ app.use('/product', productRoute)
 app.use('/order', orderRoute)
 app.use('/vendor', vendorRoutes)
 app.use('/withdraw', withdrawRoutes)
+// Only appicable to users registering with referrals
+app.use("/signup", authRoute)
 
 
 app.listen(port, () => {
