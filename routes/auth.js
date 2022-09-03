@@ -26,10 +26,13 @@ const jwt = require("jsonwebtoken");
 // });
 
 router.post("/", async (req, res) => {
-
+  const { ref } = req.query;
+  let link = ref;
+  if (!ref) link = "";
   try {
     const newUser = new User({
       ...req.body,
+      referral: link,
     });
     const user = await newUser.save();
     const token = await jwt.sign({ _id: user._id.toString() }, "TOKEN");
