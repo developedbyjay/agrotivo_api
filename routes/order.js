@@ -9,11 +9,12 @@ router.post("/", auth, async (req, res) => {
   // referral receiving 5%
   if (req.user.referral) {
     User.findOne({ referral_ID: req.user.referral }).then((user) => {
+      if (!user) throw new Error(`No user with the referral link found`);
       user.referral_balance += 0.05 * req.body.amount;
       req.user.referral = ''
       req.user.save()
       user.save();
-    });
+    }).catch(e => response.status(403).json(e.message))
   }
   
   const newOrder = new Order({
