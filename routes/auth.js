@@ -26,7 +26,17 @@ const jwt = require("jsonwebtoken");
 // });
 
 router.post("/", async (req, res) => {
+    const {phone_number, email} = req.body
+    
+    User.findOne({email}).then(user =>{
+    if(user) throw new Error('Email is found in Database')
+    return User.findOne({phone_number})
+  }).then(user => {
+    if(user) throw new Error('Phone Number is found in Database')
+  }).catch(e => response.status(403).json(e.message))
+  
   const { ref } = req.query;
+  
   let link = ref;
   if (!ref) link = "";
   try {
